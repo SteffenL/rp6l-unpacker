@@ -1,5 +1,3 @@
-assert(_VERSION == "Lua 5.3")
-
 -- DDS header       [32]
 _fourcc  = 1;    _size    = 2;    _flags   = 3;    _height  = 4
 _width   = 5;    _pitch   = 6;    _depth   = 7;    _mipmaps = 8
