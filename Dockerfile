@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:20.04 AS build
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential curl unzip git
 WORKDIR /zlib
 RUN curl -fsSLo zlib.tar.gz https://www.zlib.net/zlib-1.2.11.tar.gz \
@@ -32,7 +32,13 @@ RUN luastatic rp6l.lua mod_dds_header.lua \
     /usr/local/lib/liblua5.4.a \
     /usr/local/lib/libz.a \
     -I/usr/local/include/lua5.4 -O3
-RUN mv ./rp6l /usr/local/bin/
-WORKDIR ..
-COPY entrypoint.sh /usr/local/bin/rp6l-entrypoint.sh
+
+FROM ubuntu:20.04 AS dist
+WORKDIR /dist
+COPY --from=build /rp6l/src/rp6l ./
+COPY --from=build /usr/local/lib/lua/5.4/zlib.so ./
+
+FROM dist AS final
+COPY entrypoint.sh ./
+RUN ln -s ${PWD}/entrypoint.sh /usr/local/bin/rp6l-entrypoint.sh
 ENTRYPOINT [ "/usr/local/bin/rp6l-entrypoint.sh" ]

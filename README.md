@@ -7,10 +7,18 @@ All source code is licensed under the terms in `LICENSE` except for the original
 ## Building
 
 ```
-docker build -t rp6l .
+scripts/build-dist.sh
+
+docker build --tag rp6l --target final .
 ```
 
-## Usage
+## Usage (Linux)
+
+```
+cd dist && ./rp6l
+```
+
+## Usage (Docker)
 
 ```
 docker run --rm \
@@ -25,9 +33,11 @@ Replace the following:
 RPACK_DIR   Full path of the directory containing rpack files.
             Example: ${HOME}/.steam/steam/steamapps/common/Dying Light/DW/Data
 
+RPACK_FILE  The relative path of the rpack file to extract.
+
+RPACK_PATH  Full path of the rpack file to extract.
+
 OUT_DIR     Full path of the directory to unpack files into. A new subdirectory
             will be created in there with the same name as the rpack file.
             Example: ${PWD}/out
-
-RPACK_FILE  The relative path of the rpack file to extract.
 ```
