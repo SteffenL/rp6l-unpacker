@@ -35,8 +35,6 @@ RPACK_DIR   Full path of the directory containing rpack files.
 
 RPACK_FILE  The relative path of the rpack file to extract.
 
-RPACK_PATH  Full path of the rpack file to extract.
-
 OUT_DIR     Full path of the directory to unpack files into. A new subdirectory
             will be created in there with the same name as the rpack file.
             Example: ${PWD}/out
