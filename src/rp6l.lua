@@ -1,3 +1,21 @@
+print([[
+RP6L Unpacker
+
+Based on source code by hhrhhr (https://github.com/hhrhhr).
+Modified by Steffen André Langnes (https://github.com/SteffenL).
+Source code: https://github.com/SteffenL/rp6l-unpacker
+]])
+
+if #arg ~= 2 then
+    print([[
+Usage: rp6l RPACK_PATH OUT_DIR
+
+    RPACK_PATH  Full path of the rpack file to extract.
+    OUT_DIR     Full path of an existing directory to unpack files into.
+]])
+    os.exit(1)
+end
+
 local zlib = require("zlib")
 
 local FN = assert(arg[1])
