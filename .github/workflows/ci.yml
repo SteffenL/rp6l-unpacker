@@ -5,4 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: docker build -t rp6l .
+      - run: scripts/build-dist.sh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: rp6l-linux
+          path: dist/
+      - run: docker build --tag rp6l --target final .
