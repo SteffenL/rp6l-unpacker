@@ -1,7 +1,7 @@
 FROM ubuntu:20.04 AS build
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential curl unzip git
 WORKDIR /zlib
-RUN curl -fsSLo zlib.tar.gz https://www.zlib.net/zlib-1.2.11.tar.gz \
+RUN curl -fsSLo zlib.tar.gz https://www.zlib.net/fossils/zlib-1.2.11.tar.gz \
     && tar -xf zlib.tar.gz && rm -f zlib.tar.gz
 RUN cd zlib-* && ./configure --shared && make install
 WORKDIR /lua
