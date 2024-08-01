@@ -1,18 +1,18 @@
 FROM ubuntu:20.04 AS build
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential curl unzip git
 WORKDIR /zlib
-RUN curl -fsSLo zlib.tar.gz https://www.zlib.net/fossils/zlib-1.2.11.tar.gz \
+RUN curl -fsSLo zlib.tar.gz https://www.zlib.net/fossils/zlib-1.3.1.tar.gz \
     && tar -xf zlib.tar.gz && rm -f zlib.tar.gz
 RUN cd zlib-* && ./configure --shared && make install
 WORKDIR /lua
-RUN curl -fsSLo lua.tar.gz http://www.lua.org/ftp/lua-5.4.3.tar.gz \
+RUN curl -fsSLo lua.tar.gz https://www.lua.org/ftp/lua-5.4.7.tar.gz \
     && tar -xf lua.tar.gz && rm -f lua.tar.gz
 RUN cd lua-* && make && make local
 RUN ln -s ${PWD}/lua-*/install/bin/lua /usr/local/bin/lua5.4 \
     && ln -s ${PWD}/lua-*/install/lib/liblua.a /usr/local/lib/liblua5.4.a \
     && ln -s ${PWD}/lua-*/install/include /usr/local/include/lua5.4
 WORKDIR /luarocks
-RUN curl -fsSLo luarocks.tar.gz https://luarocks.org/releases/luarocks-3.7.0.tar.gz \
+RUN curl -fsSLo luarocks.tar.gz https://luarocks.org/releases/luarocks-3.11.1.tar.gz \
     && tar -xf luarocks.tar.gz && rm -f luarocks.tar.gz
 RUN cd luarocks-* && ./configure && make && make install
 RUN luarocks install lua-zlib
