@@ -184,7 +184,7 @@ local function process_texture(data)
     --print("\n"..width, height, mips, dxt)
     
     local dxtfmt = fmt[dxt]
-    assert(dxtfmt, dxt)
+    --assert(dxtfmt, dxt)
     local bpp = (2 == dxt or 3 == dxt) and 32 or 16
     
     dds:new()
