@@ -211,7 +211,7 @@ for i = 1, header.fnames do
     local m = filemap[i]
     local ptr = m.firstPart --+1
     
-    io.write(i, "\\", header.fnames, "\t", fn, ": ")
+    io.write(i, "/", header.fnames, "\t", fn, ": ")
     local w = assert(io.open(OUT .."/".. fn, "w+b"))
 
     local count = m.partsCount
