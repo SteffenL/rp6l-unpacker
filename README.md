@@ -4,27 +4,35 @@ This is an RP6L file unpacker based on [source code](https://gist.github.com/hhr
 
 All source code is licensed under the terms in `LICENSE` except for the original Lua scripts by hhrhhr which are copyrighted by their rightful owners.
 
-## Building
+## Prerequisites
+
+* Docker
+* Linux
+
+## Build
+
+Note: Uses Docker to build native binaries.
 
 ```
 scripts/build-dist.sh
 
+# Run it
+cd build/bin
+./rp6l
+```
+
+## Docker
+
+Builds a runnable Docker image.
+
+```
 docker build --tag rp6l --target final .
-```
 
-## Usage (Linux)
-
-```
-cd dist && ./rp6l
-```
-
-## Usage (Docker)
-
-```
+# Run it
 docker run --rm \
-    --volume "RPACK_DIR:/tmp/rp6l/in" \
+    --mount type=bind,source=RPACK_DIR,target=/tmp/rp6l/in,readonly \
     --volume "OUT_DIR:/tmp/rp6l/out" \
-    rp6l /tmp/rp6l/in/RPACK_FILE /tmp/rp6l/out
+    rp6l RPACK_FILE
 ```
 
 Replace the following:

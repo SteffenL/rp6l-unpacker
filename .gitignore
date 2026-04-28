@@ -1,4 +1,3 @@
 .vscode/
-/dist/
-/release
+/build/
 /out/

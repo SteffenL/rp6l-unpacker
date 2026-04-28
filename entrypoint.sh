@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-input_file=${1}
-output_dir=${2}
+input_dir=/tmp/rp6l/in
+input_file_name=${1}
+input_file=${input_dir}/${input_file_name}
+output_dir=/tmp/rp6l/out
 output_subdir="${output_dir}/$(basename "${input_file}")"
 script_dir=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 
